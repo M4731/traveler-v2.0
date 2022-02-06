@@ -1,3 +1,4 @@
+import firebase from 'firebase';
 import React, { useState } from 'react';
 import { Link, useHistory } from 'react-router-dom';
 import { Button, FormGroup, Input } from 'reactstrap';
@@ -10,6 +11,7 @@ import IPageProps from '../../interfaces/page';
 const RegisterPage: React.FunctionComponent<IPageProps> = props => {
     const [registering, setRegistering] = useState<boolean>(false);
     const [email, setEmail] = useState<string>('');
+    const [usernameInput, setUsernameInput] = useState<string>('');
     const [password, setPassword] = useState<string>('');
     const [confirm, setConfirm] = useState<string>('');
     const [error, setError] = useState<string>('');
@@ -62,6 +64,16 @@ const RegisterPage: React.FunctionComponent<IPageProps> = props => {
                     placeholder="Email Address"
                     onChange={event => setEmail(event.target.value)}
                     value={email}
+                />
+            </FormGroup>
+            <FormGroup>
+                <Input 
+                    type="text"
+                    name="username"
+                    id="username"
+                    placeholder="Username"
+                    onChange={event => setUsernameInput(event.target.value)}
+                    value={usernameInput}
                 />
             </FormGroup>
             <FormGroup>
