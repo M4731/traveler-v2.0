@@ -3,6 +3,7 @@ import LoginPage from "../pages/auth/login";
 import LogoutPage from "../pages/auth/logout";
 import RegisterPage from "../pages/auth/register";
 import HomePage from "../pages/home";
+import ProfilePage from "../pages/profile"
 
 const routes: IRoute[] = [
     {
@@ -32,7 +33,15 @@ const routes: IRoute[] = [
         component: LogoutPage,
         name: 'Logout Page',
         protected: true
-    }
+    },
+    {
+        path: '/profile',
+        exact: true,
+        component: ProfilePage,
+        name: 'Profile Page',
+        protected: true
+    },
+
 ];
 
 export default routes;

@@ -7,6 +7,7 @@ import IPageProps from '../interfaces/page';
 import {actionCreators, State} from '../state';
 import {useDispatch, useSelector} from 'react-redux';
 import {bindActionCreators} from 'redux';
+import Nav from '../layouts/Nav/index'
 
 const HomePage: React.FunctionComponent<IPageProps> = props => { 
     const dispatch = useDispatch();
@@ -19,6 +20,8 @@ const HomePage: React.FunctionComponent<IPageProps> = props => {
 
     return (
         <Container>
+            <Nav/>
+
             <Card>
                 <CardBody>
                     <p>
@@ -37,10 +40,8 @@ const HomePage: React.FunctionComponent<IPageProps> = props => {
                         onChange={event => setCountryValue(event.target.value)}
                         value={countryValue}
                     />
-                    <Button onClick={() => addCountry(countryValue)}> add </Button>
+                    <Button onClick={() => addCountry(countryValue)} style ={{ marginRight: '1rem' }}> add </Button>
                     <Button onClick={() => wishlistCountry(countryValue)}> wishlist </Button>
-                    <Button onClick={() => emptyAddCountry()}> empty visited </Button>
-                    <Button onClick={() => emptyWishlistCountry()}> empty wishlist </Button>
                 </CardBody>
             </Card>
         </Container>
