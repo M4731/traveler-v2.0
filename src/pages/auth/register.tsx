@@ -1,4 +1,3 @@
-import firebase from 'firebase';
 import React, { useState } from 'react';
 import { Link, useHistory } from 'react-router-dom';
 import { Button, FormGroup, Input } from 'reactstrap';

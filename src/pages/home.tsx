@@ -1,12 +1,20 @@
-import firebase from 'firebase';
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Button, Card, CardBody, Container, Input } from 'reactstrap';
 import { auth } from '../config/firebase';
 import IPageProps from '../interfaces/page';
-import {addToDatabase, favoriteToDatabase} from '../components/DatabaseManagement'
+// import {addToDatabase, favoriteToDatabase} from '../components/DatabaseManagement'
+import {actionCreators, State} from '../state';
+import {useDispatch, useSelector} from 'react-redux';
+import {bindActionCreators} from 'redux';
 
 const HomePage: React.FunctionComponent<IPageProps> = props => { 
+    const dispatch = useDispatch();
+    const {addCountry, wishlistCountry, emptyAddCountry, emptyWishlistCountry} = bindActionCreators(
+      actionCreators, 
+      dispatch
+    );
+
     const [countryValue, setCountryValue] = useState<string>('');
 
     return (
@@ -29,8 +37,10 @@ const HomePage: React.FunctionComponent<IPageProps> = props => {
                         onChange={event => setCountryValue(event.target.value)}
                         value={countryValue}
                     />
-                    <Button onClick={event => addToDatabase(countryValue)}> add </Button>
-                    <Button onClick={event => favoriteToDatabase(countryValue)}> favorite </Button>
+                    <Button onClick={() => addCountry(countryValue)}> add </Button>
+                    <Button onClick={() => wishlistCountry(countryValue)}> wishlist </Button>
+                    <Button onClick={() => emptyAddCountry()}> empty visited </Button>
+                    <Button onClick={() => emptyWishlistCountry()}> empty wishlist </Button>
                 </CardBody>
             </Card>
         </Container>
